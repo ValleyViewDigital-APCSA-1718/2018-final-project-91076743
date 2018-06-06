@@ -1,0 +1,4 @@
+Objective of game is to avoid the ghost while trying to collect the cherries.
+Each cherry give 5 points while each ghost takes 5 away.
+Move Pacman left or right to play.
+The game gets harder the more cherries collected.
