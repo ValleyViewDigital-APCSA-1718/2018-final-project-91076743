@@ -1,0 +1,34 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class Ghost here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Ghost extends Actor implements AllGhost
+{
+    int respawnCount = 1;
+     /**
+     * Act - do whatever the Ghost wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act() 
+    {
+        //has ghost fall down
+        setLocation(getX(), getY()+4);
+        //respawns ghost
+        if(getY() > 390)
+        {
+            respawn();
+        }
+    }  //end act class
+    
+    public void respawn()
+    {
+        //random number of ghost
+        int rand = Greenfoot.getRandomNumber(600);
+        //random location
+        setLocation( rand , 0);
+    }// end respawn class
+}
