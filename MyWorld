@@ -1,0 +1,36 @@
+import greenfoot.*;  
+
+public class MyWorld extends World
+{
+ //variable to count score
+ private int stepCounter;
+    /**
+     * Constructor for objects of class MyWorld.
+     * 
+     */
+    public MyWorld()
+    {    
+        // Create a new world 
+        super(600, 400, 1); 
+        //adds pacman
+        addObject(new PacMan(),  50, 350);
+        //initial score
+        stepCounter = 0;
+    }// end myworld class
+    public void act()
+    {
+        stepCounter = stepCounter + 1;
+        //gets a random number
+        int rand = Greenfoot.getRandomNumber(600);
+        if ( stepCounter % 75 == 0)
+        {
+            // adds the ghost
+            addObject(new Ghost(), rand, 0);
+        }// end if ghost
+        if ( stepCounter % 45 == 0)
+        {
+            // adds the cherry
+            addObject(new Cherry(), rand, 0);
+        }//end if cherry
+    }//end class act
+}
