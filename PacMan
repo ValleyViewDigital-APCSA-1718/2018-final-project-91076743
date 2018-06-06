@@ -1,0 +1,103 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class PacMan here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class PacMan extends Actor
+{
+    // keeps the score
+     private int score;
+    
+    public PacMan()
+    {
+        //score
+        score = 0;
+    }// end pacman class
+    public PacMan(int score)
+    {
+       this.score = score;
+    }// end pacman class
+    
+    /**
+     * Act - do whatever the PacMan wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act() 
+    {
+        // stops pacman
+        if( Greenfoot.isKeyDown("down") == true)
+        {
+            move(0);
+        }
+        else
+        {
+            // if not pressing down, pacman keeps going
+            move(2);
+        }// end if pacman moving
+        // if pacman touches the edge, pacman turns around
+        if(isAtEdge()== true)
+        {
+            turn(180);
+        }
+        //makes pacman turn right
+        if( Greenfoot.isKeyDown("right") == true)
+        {
+            setRotation(0);
+        }
+        //makes pacman turn left
+        else if ( Greenfoot.isKeyDown("left") == true)
+        {
+            setRotation(180);
+        }
+        //update score
+        update();
+    }    
+    //determines what pacman is touching and either adds or subtract from score
+    public void update()
+    {
+        //when pacman touches a cherry, adds 5 to total score
+        if (isTouching(Cherry.class) == true)
+        {
+            removeTouching(Cherry.class);
+            // adds 5 to score
+            score = score + 5;
+            
+            World w = getWorld();
+            //shows addition to score
+            w.showText( "Score: "+score , 50 , 375);
+        }
+        //when pacman touches a ghost, subtracts 5 from score
+        if (isTouching(Ghost.class) == true)
+        {
+            removeTouching(Ghost.class);
+            //subtracts 5 from score
+            score = score - 5;
+            
+            World w = getWorld();
+            //shows subtration from score
+            w.showText( "Score: "+score , 50 , 375);
+        }
+        
+        while (score > 0 && score < 100)
+        {
+          Cherry.setrespawnCount(1);
+          BlueGhost.setrespawnCount(1);
+        }
+        
+        for (int i =0; i <= count; i++)
+        {
+           if (isTouching(Cherry.class) == true)
+           {
+            addObject(new BlueGhost(), rand, 0); 
+           }
+        }
+    }// end update class
+    public int getScore()
+    {
+     return Score;
+    }// end getscore class
+    
+}
